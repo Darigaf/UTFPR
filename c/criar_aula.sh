@@ -11,7 +11,7 @@ echo $Numero_Exercicios
 for ((i = 1; i < $Numero_Exercicios+1; i++))
 do
 	echo $i': atividade_'$i'.c' >> Makefile
-	echo '	gcc atividade_'$i'.c -o atividade'$i' -lm  -W -Wall -pedantic'>> Makefile
+	echo '	gcc atividade_'$i'.c -o atividade'$i' -O0 -g3-lm  -W -Wall -pedantic'>> Makefile
 
 	echo "#include <stdio.h>
 		
