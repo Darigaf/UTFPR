@@ -16,22 +16,6 @@
 #include "imagem.h"
 
 /*============================================================================*/
-void codificaStreamImagem (int n_bits){
-	unsigned int pixel = 0xFF;
-	while(pixel != 0xFFFFFFFF){
-		pixel = pegaProximoPixel();
-		// comprime 
-		// comprimido para byte
-		// byte = pixel_comprimido
-		enviaByteRBD(unsigned char byte);
-	}
-
-}
-void decodificaStreamRBD (int n_bits, int preenche){
-
-}
-
-/*============================================================================*/
 /* Estas variáveis são globais somente para isolar parte do trabalho dos alunos (evita o uso de ponteiros para structs por eles). */
 
 Imagem1C* img = NULL; // Imagem de entrada (codificação) ou saída (decodificação).
