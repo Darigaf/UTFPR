@@ -46,7 +46,7 @@ void codificaStreamImagem (int n_bits){
 		}	
 
                 // Move os bits para a direita, para que fiquem na posição devida.
-                compressed_byte = compressed_byte >> n_bits*4;
+                compressed_byte = compressed_byte >> n_bits*2;
                 printf("%X \n", compressed_byte);
                 //enviaByteRBD(compressed_byte);
         	compressed_byte = 0x00;
@@ -56,6 +56,6 @@ void codificaStreamImagem (int n_bits){
 }
 
 int main(){
-	codificaStreamImagem(2);
+	codificaStreamImagem(4);
 	return 0;
 }
