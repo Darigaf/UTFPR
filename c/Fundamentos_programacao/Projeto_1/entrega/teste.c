@@ -47,7 +47,7 @@ void codificaStreamImagem (int n_bits){
 
                 // Move os bits para a direita, para que fiquem na posição devida.
                 compressed_byte = compressed_byte >> (n_bits*quantidade_iteracoes);
-                printf("%X \n", compressed_byte);
+                //printf("%X \n", compressed_byte);
                 //enviaByteRBD(compressed_byte);
         	compressed_byte = 0x00;
         }
@@ -62,8 +62,9 @@ int pegaProximoByteRBD(int contador){
 void decodificaStreamRBD (int n_bits, int preenche){
 	int contador = 0;
 	int quantidade_iteracoes;
-	unsigned int uncompressed_byte;
-        unsigned long int comparison_mask;
+	unsigned long int uncompressed_byte = 0x00;
+        int comparison_mask;
+	int shifted_comparison_mask;
         unsigned long int bits_significativos = 0x00;
 	unsigned int compressed_byte = pegaProximoByteRBD(contador);
 	contador++;
@@ -85,20 +86,28 @@ void decodificaStreamRBD (int n_bits, int preenche){
 	
 	while(compressed_byte != 0xFFFFFFFF){
 		
-		for(int i = 0; i < (quantidade_iteracoes-1); i++){
+		shifted_comparison_mask = comparison_mask;
+		for(int i = 0; i < (quantidade_iteracoes); i++){
 			// Compara o byte com a mascara e retorna o valor dos bits mais significativos
-			bits_significativos = compressed_byte & comparison_mask;
+			bits_significativos = compressed_byte & shifted_comparison_mask;
+			bits_significativos = bits_significativos << (i*n_bits);
 			// Adiciona os bits na variavel
-			uncompressed_byte = compressed_byte | bits_significativos;
+			uncompressed_byte = uncompressed_byte | bits_significativos;
+			//uncompressed_byte = uncompressed_byte << 8;
 			// Move os bits para a esquerda para que seja possível fazer a próxima comparação
-			uncompressed_byte = compressed_byte << (n_bits*quantidade_iteracoes);
-			//printf("%X \n", bits_significativos);
-			compressed_byte = pegaProximoByteRBD(contador);
-			contador ++;
-		}	
-			uncompressed_byte = uncompressed_byte >> (n_bits*quantidade_iteracoes);
+			//printf("Significativos :%X \n", bits_significativos);
+			//printf("Uncompressed: %X \n", uncompressed_byte);
+			//printf("Compressed: %X \n", compressed_byte);
+			//printf("Comparison: %X \n", comparison_mask);
+			shifted_comparison_mask = comparison_mask >> n_bits;
+                	//uncompressed_byte = uncompressed_byte >> (i+2);
 			printf("%X \n", uncompressed_byte);
+			uncompressed_byte = 0x00;
 		//enviaPixel(uncompressed_byte);
+		}	
+		compressed_byte = pegaProximoByteRBD(contador);
+		contador ++;
+			
 	}
 }
  

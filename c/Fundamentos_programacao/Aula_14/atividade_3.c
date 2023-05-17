@@ -1,7 +1,17 @@
 #include <stdio.h>
-		
-int main(){
 
+		
+void stling(){
+
+
+
+}
+
+int main(){
+	stling s[], buffer;	
+	
+
+	printf("%c", s[1]);
 	return 0;
 }
 	

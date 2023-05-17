@@ -6,3 +6,5 @@
 	gcc atividade_3.c -o atividade3 -O0 -g3 -lm  -W -Wall -pedantic
 4: atividade_4.c
 	gcc atividade_4.c -o atividade4 -O0 -g3 -lm  -W -Wall -pedantic
+desafio: desafio.c
+	gcc desafio.c -o desafio -O0 -g3 -lm  -W -Wall -pedantic
