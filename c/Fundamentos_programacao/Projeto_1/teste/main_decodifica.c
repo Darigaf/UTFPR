@@ -11,8 +11,8 @@
 
 /*============================================================================*/
 
-#define ARQUIVO_RBD "img/teste0-4.rbd" /* Entrada codificada. */
-#define ARQUIVO_IMG "img/tesaskiaskdkzxncmzkxcdasodate3-4.bmp" /* Imagem de saída. */
+#define ARQUIVO_RBD "img/teste2-4.rbd" /* Entrada codificada. */
+#define ARQUIVO_IMG "img/asiaopoooopppppppppppppppppppp-4.bmp" /* Imagem de saída. */
 #define BPP 4 /* Precisa ser 1, 2 ou 4. */
 
 /*============================================================================*/
