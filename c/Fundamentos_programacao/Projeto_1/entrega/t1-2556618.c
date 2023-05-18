@@ -1,22 +1,9 @@
-int pegaProximoByteRBD(int contador){
-        //long int pixeis[] = {0x1A, 0x7B, 0x35, 0x4D, 0xFFFFFFFF};
-        long int pixeis[] = {0x26, 0x17, 0xFFFFFFFF};
-        //long int pixeis[] = {0x7B, 0x7B, 0x7B, 0x7B, 0x7B, 0xFFFFFFFF};
-        return pixeis[contador];
-}
-#include <stdio.h>
-int pegaProximoPixel(int contador){
-        long int pixeis[] = {0x12, 0xAF, 0x78, 0xBC, 0x33, 0x51, 0x49, 0xD1, 0xFFFFFFFF};
-        return pixeis[contador];
-}
-
-// // Código criado pelo aluno Mateus Bernardo      RA: 2556618
-//#include "trabalho1.h"
+// Código criado pelo aluno Mateus Bernardo      RA: 2556618
+#include "trabalho1.h"
 #define FINAL_BYTE 0xFFFFFFFF
 void codificaStreamImagem (int n_bits){
         //Declaração das variáveis usadas
 	int quantidade_iteracoes;
-	int contador = 0;
         unsigned int pixel = 0xFF;
         unsigned long int comparison_mask;
         unsigned long int compressed_byte = 0x00;
@@ -38,10 +25,10 @@ void codificaStreamImagem (int n_bits){
 		comparison_mask = 0xF0;
 	}
 	//inicializa a variavel com o primeiro pixel
-	pixel = pegaProximoPixel(contador);
-	contador++;
+	pixel = pegaProximoPixel();
+
         // Encerra o Loop somente ao receber o byte de encerramento
-        while(pixel != FINAL_BYTE){
+        while(pixel != 0xFFFFFFFF){
 
 		//quantidade_iteracoes é a quantidade de vezes que o loop precisa ser executado para se obter um byte completo
 		for(int i = 0; i < quantidade_iteracoes; i++){
@@ -51,15 +38,13 @@ void codificaStreamImagem (int n_bits){
 			compressed_byte = compressed_byte | bits_significativos;
 			// Move os bits para a esquerda para que seja possível fazer a próxima comparação
 			compressed_byte = compressed_byte << n_bits;
-			pixel = pegaProximoPixel(contador);
-			contador++;
+			pixel = pegaProximoPixel();
 			}	
 
                 // Move os bits para a direita, para que fiquem na posição devida.
 		// Sendo que a quantidade de casas a ser movida depende de n_bits
                 compressed_byte = compressed_byte >> (n_bits*quantidade_iteracoes);
-                //enviaByteRBD((char)compressed_byte);
-		printf("%X \n", compressed_byte);
+                enviaByteRBD(compressed_byte);
 
 		// Zera a variavel compressed_byte para possibilitar o uso no próximo loop
         	compressed_byte = 0x00;
@@ -69,15 +54,13 @@ void codificaStreamImagem (int n_bits){
 }
 void decodificaStreamRBD (int n_bits, int preenche){
 	// Inicializa as variaveis que serão usadas
-	int contador = 0;
 	int quantidade_iteracoes;
 	int i;
         int comparison_mask;
 	int shifted_comparison_mask;
 	unsigned long int uncompressed_byte = 0x00;
         unsigned long int bits_significativos = 0x00;
-	unsigned int compressed_byte = pegaProximoByteRBD(contador);
-	contador++;
+	unsigned int compressed_byte = pegaProximoByteRBD();
 	//Seleciona a máscara de acordo com o valor de n_bits
 	if(n_bits == 1){
 		quantidade_iteracoes = 8;
@@ -95,7 +78,7 @@ void decodificaStreamRBD (int n_bits, int preenche){
 		comparison_mask = 0xF0;
 	}
 	// Finaliza o loop ao receber o byte de encerramento
-	while(compressed_byte != FINAL_BYTE){
+	while(compressed_byte != 0xFFFFFFFF){
 		// Reinicializa a variavel para que ela possa ser usada no próximo loop de forma correta
 		shifted_comparison_mask = comparison_mask;
 		for(i = 0; i < (quantidade_iteracoes); i++){
@@ -108,22 +91,11 @@ void decodificaStreamRBD (int n_bits, int preenche){
 			// Move os bits da máscara para a direita para que seja possível fazer a próxima comparação
 			shifted_comparison_mask = shifted_comparison_mask >> n_bits;
 			// Zera a variavel para que possa ser usada no próximo loop
-			printf("%X \n", uncompressed_byte);
 			uncompressed_byte = 0x00;
 
-		//	enviaPixel(uncompressed_byte);
+			enviaPixel(uncompressed_byte);
 		}	
-		compressed_byte = pegaProximoByteRBD(contador);
-		contador++;
+		compressed_byte = pegaProximoByteRBD();
 			
 	}
-}
-
-int main(){
-        int n_bits = 4;
-        codificaStreamImagem(n_bits);
-        decodificaStreamRBD(n_bits, 0);
-        n_bits = 2;
-        decodificaStreamRBD(n_bits, 0);
-        return 0;
 }
