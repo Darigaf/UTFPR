@@ -56,12 +56,15 @@ void codificaStreamImagem (int n_bits){
 }
 
 int pegaProximoByteRBD(int contador){
-	long int pixeis[] = {0x1A, 0x7B, 0x35, 0x4D, 0xFFFFFFFF};
+	//long int pixeis[] = {0x1A, 0x7B, 0x35, 0x4D, 0xFFFFFFFF};
+	long int pixeis[] = {0x26, 0x17, 0xFFFFFFFF};
+	//long int pixeis[] = {0x7B, 0x7B, 0x7B, 0x7B, 0x7B, 0xFFFFFFFF};
 	return pixeis[contador];
 }
 void decodificaStreamRBD (int n_bits, int preenche){
 	int contador = 0;
 	int quantidade_iteracoes;
+	int i;
 	unsigned long int uncompressed_byte = 0x00;
         int comparison_mask;
 	int shifted_comparison_mask;
@@ -85,9 +88,8 @@ void decodificaStreamRBD (int n_bits, int preenche){
 	}
 	
 	while(compressed_byte != 0xFFFFFFFF){
-		
 		shifted_comparison_mask = comparison_mask;
-		for(int i = 0; i < (quantidade_iteracoes); i++){
+		for(i = 0; i < (quantidade_iteracoes); i++){
 			// Compara o byte com a mascara e retorna o valor dos bits mais significativos
 			bits_significativos = compressed_byte & shifted_comparison_mask;
 			bits_significativos = bits_significativos << (i*n_bits);
@@ -95,11 +97,11 @@ void decodificaStreamRBD (int n_bits, int preenche){
 			uncompressed_byte = uncompressed_byte | bits_significativos;
 			//uncompressed_byte = uncompressed_byte << 8;
 			// Move os bits para a esquerda para que seja possível fazer a próxima comparação
-			//printf("Significativos :%X \n", bits_significativos);
-			//printf("Uncompressed: %X \n", uncompressed_byte);
-			//printf("Compressed: %X \n", compressed_byte);
-			//printf("Comparison: %X \n", comparison_mask);
-			shifted_comparison_mask = comparison_mask >> n_bits;
+			printf("Compressed: %X \n", compressed_byte);
+			printf("Comparison: %X \n", shifted_comparison_mask);
+			printf("Significativos :%X \n", bits_significativos);
+			printf("Uncompressed: %X \n", uncompressed_byte);
+			shifted_comparison_mask = shifted_comparison_mask >> n_bits;
                 	//uncompressed_byte = uncompressed_byte >> (i+2);
 			printf("%X \n", uncompressed_byte);
 			uncompressed_byte = 0x00;
@@ -115,6 +117,8 @@ void decodificaStreamRBD (int n_bits, int preenche){
 int main(){
 	int n_bits = 4;
 	codificaStreamImagem(n_bits);
+	decodificaStreamRBD(n_bits, 0);
+	n_bits = 2;
 	decodificaStreamRBD(n_bits, 0);
 	return 0;
 }
