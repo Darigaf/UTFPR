@@ -22,4 +22,3 @@ int main(){
 	
 	" >> atividade_$i.c
 done
-
