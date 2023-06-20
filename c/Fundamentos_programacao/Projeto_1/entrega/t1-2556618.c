@@ -1,6 +1,5 @@
 // Código criado pelo aluno Mateus Bernardo      RA: 2556618
 #include "trabalho1.h"
-#define FINAL_BYTE 0xFFFFFFFF
 void codificaStreamImagem (int n_bits){
         //Declaração das variáveis usadas
 	int quantidade_iteracoes;
@@ -45,6 +44,7 @@ void codificaStreamImagem (int n_bits){
 		// Sendo que a quantidade de casas a ser movida depende de n_bits
                 compressed_byte = compressed_byte >> (n_bits*quantidade_iteracoes);
                 enviaByteRBD(compressed_byte);
+		printf("%X\n", compressed_byte);
 
 		// Zera a variavel compressed_byte para possibilitar o uso no próximo loop
         	compressed_byte = 0x00;
@@ -91,9 +91,9 @@ void decodificaStreamRBD (int n_bits, int preenche){
 			// Move os bits da máscara para a direita para que seja possível fazer a próxima comparação
 			shifted_comparison_mask = shifted_comparison_mask >> n_bits;
 			// Zera a variavel para que possa ser usada no próximo loop
-			uncompressed_byte = 0x00;
 
 			enviaPixel(uncompressed_byte);
+			uncompressed_byte = 0x00;
 		}	
 		compressed_byte = pegaProximoByteRBD();
 			
