@@ -4,12 +4,17 @@
 
 #include "trabalho3.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "gerador_de_testes.h"
 
 #define FILTRO 35
-#define INTERVALO_CONTINUIDADE 4
+#define INTERVALO_CONTINUIDADE 2
+#define LARGURA_BORDA 4
 int contaVeiculos(Imagem3C* img, Imagem3C* bg, int contagem[N_TIPOS_DE_VEICULOS]){
+	int pixeis_continuos = 0;
+	int espaco_vazio = 0;
+	int borda_esquerda, borda_direita;
 	for(int i = 0; i < 4;i++){
 		contagem[i] = 0;
 	}
@@ -19,9 +24,20 @@ int contaVeiculos(Imagem3C* img, Imagem3C* bg, int contagem[N_TIPOS_DE_VEICULOS]
 	for(int altura=0; altura<bg->altura; altura++){
 		for(int largura=0; largura<bg->largura; largura++){
 			if(imagem_diferenca->dados[altura][largura] == 255){
-
+				pixeis_continuos++;
+				espaco_vazio = 0;
 			}
-			else()
+			else{
+				espaco_vazio++;
+			}
+			if(espaco_vazio > INTERVALO_CONTINUIDADE){
+				espaco_vazio = 0;
+				pixeis_continuos = 0;
+			}
+			if(pixeis_continuos >= LARGURA_BORDA){
+				borda_esquerda = largura;	
+				printf("%d", borda_esquerda);
+			}
 
 		}
 	}
