@@ -21,8 +21,10 @@ int contaVeiculos(Imagem3C* img, Imagem3C* bg, int contagem[N_TIPOS_DE_VEICULOS]
 	Imagem3C* sub;
 	sub=(Imagem3C*)malloc(sizeof(Imagem3C));
 	Imagem1C* imagem_diferenca;
-	for(int altura=0; altura<bg->altura; altura++){
-		for(int largura=0; largura<bg->largura; largura++){
+	imagem_diferenca=(Imagem1C*)malloc(sizeof(Imagem1C));
+	subtraiImagem(img, bg, &imagem_diferenca);
+	for(int altura=0; altura < bg->altura; altura++){
+		for(int largura=0; largura < bg->largura; largura++){
 			if(imagem_diferenca->dados[altura][largura] == 255){
 				pixeis_continuos++;
 				espaco_vazio = 0;
@@ -41,14 +43,13 @@ int contaVeiculos(Imagem3C* img, Imagem3C* bg, int contagem[N_TIPOS_DE_VEICULOS]
 
 		}
 	}
-	return contagem;
+	return contagem[N_TIPOS_DE_VEICULOS];
 }
 
 void subtraiImagem(Imagem3C* img, Imagem3C* bg, Imagem1C* imagem_diferenca){
 	char* caminho_imagem="imagem_de_teste.bmp";
 	int diferenca, e_diferente;
 	//Imagem1C* imagem_diferenca;
-	imagem_diferenca=(Imagem1C*)malloc(sizeof(Imagem1C));
 	
 	imagem_diferenca=criaImagem1C(img->largura, img->altura);
 	
