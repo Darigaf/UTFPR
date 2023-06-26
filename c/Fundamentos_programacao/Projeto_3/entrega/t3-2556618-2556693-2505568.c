@@ -4,25 +4,23 @@
 
 #include "trabalho3.h"
 #include <stdlib.h>
-#include <stdio.h>
-
 #include "gerador_de_testes.h"
 
-#define FILTRO 35
-#define INTERVALO_CONTINUIDADE 2
-#define LARGURA_BORDA 4
+#define FILTRO 40
+#define INTERVALO_CONTINUIDADE 1
+#define LARGURA_BORDA 10
+Imagem1C* subtraiImagem(Imagem3C* img, Imagem3C* bg);
 int contaVeiculos(Imagem3C* img, Imagem3C* bg, int contagem[N_TIPOS_DE_VEICULOS]){
 	int pixeis_continuos = 0;
 	int espaco_vazio = 0;
-	int borda_esquerda, borda_direita;
+	int borda_esquerda[300], borda_direita, altura_veiculo[300];
+	int veiculos_totais = 0;
 	for(int i = 0; i < 4;i++){
 		contagem[i] = 0;
 	}
-	Imagem3C* sub;
-	sub=(Imagem3C*)malloc(sizeof(Imagem3C));
 	Imagem1C* imagem_diferenca;
-	imagem_diferenca=(Imagem1C*)malloc(sizeof(Imagem1C));
-	subtraiImagem(img, bg, &imagem_diferenca);
+	//imagem_diferenca=(Imagem1C*)malloc(sizeof(Imagem1C));
+	imagem_diferenca=subtraiImagem(img, bg);
 	for(int altura=0; altura < bg->altura; altura++){
 		for(int largura=0; largura < bg->largura; largura++){
 			if(imagem_diferenca->dados[altura][largura] == 255){
@@ -36,9 +34,10 @@ int contaVeiculos(Imagem3C* img, Imagem3C* bg, int contagem[N_TIPOS_DE_VEICULOS]
 				espaco_vazio = 0;
 				pixeis_continuos = 0;
 			}
-			if(pixeis_continuos >= LARGURA_BORDA){
-				borda_esquerda = largura;	
-				printf("%d", borda_esquerda);
+			if(pixeis_continuos >= LARGURA_BORDA && veiculos_totais < 300){
+				borda_esquerda[veiculos_totais] = largura;	
+				altura_veiculo[veiculos_totais] = altura;
+				veiculos_totais ++;
 			}
 
 		}
@@ -46,10 +45,10 @@ int contaVeiculos(Imagem3C* img, Imagem3C* bg, int contagem[N_TIPOS_DE_VEICULOS]
 	return contagem[N_TIPOS_DE_VEICULOS];
 }
 
-void subtraiImagem(Imagem3C* img, Imagem3C* bg, Imagem1C* imagem_diferenca){
+Imagem1C* subtraiImagem(Imagem3C* img, Imagem3C* bg){
 	char* caminho_imagem="imagem_de_teste.bmp";
-	int diferenca, e_diferente;
-	//Imagem1C* imagem_diferenca;
+		int diferenca, e_diferente;
+		Imagem1C* imagem_diferenca;
 	
 	imagem_diferenca=criaImagem1C(img->largura, img->altura);
 	
@@ -85,6 +84,7 @@ void subtraiImagem(Imagem3C* img, Imagem3C* bg, Imagem1C* imagem_diferenca){
 	}
 	
 	salvaImagem1C (imagem_diferenca, caminho_imagem);
+	return imagem_diferenca;
 	
 }
 

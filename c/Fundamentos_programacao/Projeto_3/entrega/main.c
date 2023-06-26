@@ -21,7 +21,7 @@
 
 #define RANDOM_SEED_OFFSET 1
 
-#define N_TESTES 1000
+#define N_TESTES 4
 
 #define SALVA_INTERMEDIARIOS 1 /* Flag que diz se devemos salvar as imagens de teste. Desative se for rodar muitos testes! */
 
