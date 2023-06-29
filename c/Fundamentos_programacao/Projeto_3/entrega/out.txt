@@ -1,5 +1,5 @@
 ----------------------------------------
-Tempo total: 29299115
+Tempo total: 29184730
 Veiculos gerados: 78
 Deteccoes falsas: 0
 Nao detectados: 0
