@@ -57,7 +57,6 @@ int contaVeiculos(Imagem3C* img, Imagem3C* bg, int contagem[N_TIPOS_DE_VEICULOS]
 }
 
 Imagem1C* subtraiImagem(Imagem3C* img, Imagem3C* bg){
-	char* caminho_imagem="imagem_de_teste.bmp";
 	int diferenca, e_diferente;
 	Imagem1C* imagem_diferenca;
 	
@@ -94,8 +93,10 @@ Imagem1C* subtraiImagem(Imagem3C* img, Imagem3C* bg){
 		}
 	
 	}
-	
-	salvaImagem1C (imagem_diferenca, caminho_imagem);
+	// Caso seja necessário avaliar o resultado	
+	// Descomente as duas linhas abaixo para salvar a imagem resultante da função
+	//char* caminho_imagem="imagem_de_teste.bmp";
+	//salvaImagem1C (imagem_diferenca, caminho_imagem);
 	return imagem_diferenca;
 	
 }
