@@ -1,6 +1,9 @@
 Meu nome é Mateus Bernardo tenho 19 anos.
 Possuo experiência prática com administração de servidores linux, e deploy de serviços utilizando diversas ferramentas, incluindo docker, apt e snap. Também tenho conhecimento básico na criação e manutenção de redes de computadores com certificação CCNA 01.
+Possuo experiência com a elaboração e apresentação de aulas.
+Participei, durante 3 anos, do laboratório de robótica do IFPR. Onde tive que solucionar problemas, e desenvolver códigos para seguidores de linha. No laboratório também desenvolvi e apresentei aulas de robótica para professores da rede pública.
+
 Sou uma pessoa disposta a aprender e extremamente curiosa, por isso estou disposto a receber desafios a serem solucionados.
 Sou escoteiro há mais de 5 anos, o que me trouxe grande vivência com liderança de pessoas e na resolução de conflitos e problemas.
-Sou Técnico em Informática formado pelo IFPR.
+Sou Técnico em Informática formado pelo IFPR. Lá desenvolvi um projeto de TCC com drones de vigilância, utilizando Python e ROS, que me deu aprovação com nota máxima.
 E atualmente estou na faculdade cursando engenharia da computação.
