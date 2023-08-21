@@ -1,0 +1,6 @@
+Meu nome é Mateus Bernardo tenho 19 anos.
+Possuo experiência prática com administração de servidores linux, e deploy de serviços utilizando diversas ferramentas, incluindo docker, apt e snap. Também tenho conhecimento básico na criação e manutenção de redes de computadores com certificação CCNA 01.
+Sou uma pessoa disposta a aprender e extremamente curiosa, por isso estou disposto a receber desafios a serem solucionados.
+Sou escoteiro há mais de 5 anos, o que me trouxe grande vivência com liderança de pessoas e na resolução de conflitos e problemas.
+Sou Técnico em Informática formado pelo IFPR.
+E atualmente estou na faculdade cursando engenharia da computação.
