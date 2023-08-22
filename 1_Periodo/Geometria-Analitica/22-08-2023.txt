@@ -1,0 +1,2 @@
+soma de vetores.
+Prova pelo teorema da indução infinita no exercício. 8B do capítulo 2 do livro de Geometria Analítica do Paulo Boulos.
