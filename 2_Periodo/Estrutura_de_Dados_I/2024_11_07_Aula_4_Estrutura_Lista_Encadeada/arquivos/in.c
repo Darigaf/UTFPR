@@ -2,7 +2,13 @@
 
 /* */
 int in (List *l, int k) {
-  /*Terminar!*/	
+	List *temp;
+	for(temp = l;temp != NULL;temp = temp->next){
+		if(temp->data == k){
+			return 1;
+		}
+	}
+	return 0;	
 }
 
 /* */
