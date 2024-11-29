@@ -2,7 +2,13 @@
 #include <time.h>
 
 void jackpot (int n, int r) {
-  /*Terminar*/
+	Queue **carreteis = (Queue **)malloc(n * sizeof(Queue*));
+	for(int i = 0; i < n; i++){
+
+	}
+	carretel_um = create(r);
+
+	if(
 }
 
 int main () {
