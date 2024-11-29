@@ -3,14 +3,25 @@
 
 /* */
 int position (List *l, int k) {
-  /*Terminar*/
+	if(l == NULL){
+		return -1;
+	}
+	if(l->data == k){
+		return 0;
+	}
+	int pos = position(l->next,k);
+	
+	if(pos == -1){
+		return -1;
+	}
+	return pos + 1;
 }
 
 /* */
 int main () {
   List *l = NULL;
   int k;
-  for (k = 5; k <= 9; k++) {
+  for (k = 6; k <= 9; k++) {
     l = insert_back (l, k);
   }
   for (k = 4; k >= 0; k--) {

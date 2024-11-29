@@ -1,0 +1,1 @@
+O código efetua a função remove que foi apresentada nos slides da aula, porém há um erro no nome da variavel que guarda a cabeça da lista encadeada, ela é recebida pela função como "List *l", porém no código é usada como "lista", sendo que esse nome de variável não foi definido.

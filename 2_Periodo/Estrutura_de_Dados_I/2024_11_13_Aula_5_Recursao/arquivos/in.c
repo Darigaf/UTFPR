@@ -3,7 +3,13 @@
 
 /* */
 int in (List *l, int k) {
-  /*Terminar.*/	
+	if(l == NULL){
+		return 0;
+	}	
+	if(l->data == k){
+		return 1;	
+	}
+	return in(l->next, k);
 }
 
 /* */

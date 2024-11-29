@@ -2,7 +2,28 @@
 
 /* */
 List* merge (List *A, List *B) {
-  /*Terminar.*/	
+	List *C = NULL, *temp_c = NULL;
+
+	if((A != NULL)&&(B != NULL)){
+		if(A->data < B->data){
+			C->next = merge(A->next, B);
+		}	
+		if(A->data > B->data){
+			C->next = merge(A, B->next);
+		}	
+		if(A->data == B->data){
+			C->next = merge(A->next, B);
+		}	
+	}
+	if(A == NULL){
+		temp_c->next = B;
+	}	
+	if(B == NULL){
+		temp_c->next = A;
+	}	
+	
+	
+	return C;
 }
 
 /* */
