@@ -1,0 +1,30 @@
+1° Questão:
+Comparar complexidades de algoritmos
+Cada questão errada anula uma certa.
+Dica, questões vazias não são consideradas erradas
+
+2° Questão:
+Escreva uma função recursiva e uma função iterativa que recebe uma lista encadeada e um inteiro k como
+entrada e retorna a posição da primeira ocorrência de k na lista: 0 se estiver no primeiro nó, 1 se
+estiver no segundo, ..., ou -1 se ele não existe. Por exemplo, se ℓ = {5, 6, 7, 8, 9, 4, 3, 2, 1, 0} e k = 7,
+então o retorno da função é 2. A função deve utilizar o seguinte protótipo:
+int position-iterativa (List *l, int k); int position-recursiva (List *l, int k);
+
+3° Questão:
+
+
+
+4° Questão:
+
+5° Questão:
+Dado uma lista encadeada simples com n elementos, faça um programa que retorne o elemento aproximadamente central da lista, soluluções com complexidade maior que O(n) serão desconsideradas, não conte o número de elementos na lista.
+https://leetcode.com/problems/middle-of-the-linked-list/
+
+6° Questão:
+Dado um número qualquer e k, remova "k" algarismos para que o numero se torne o menor possivel, exemplo:
+para numeros="153461" k=3
+a função deve retornar 1341
+
+A função deve utilizar o seguinte protótipo:
+int remove_k(String *numeros,k);
+
