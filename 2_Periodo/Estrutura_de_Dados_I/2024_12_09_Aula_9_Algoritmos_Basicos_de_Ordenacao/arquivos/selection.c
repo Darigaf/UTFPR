@@ -2,7 +2,22 @@
 
 /* */
 void selection_sort (int *A, int n) {
-  /*Terminar*/	
+	int lowest_pos, temp;
+	for(int i = 0; i < n-1; i++){
+		lowest_pos = i;
+		for(int j = i; j < n-1; j++){
+			if(A[j] < lowest_pos){
+				lowest_pos = j; 
+			}
+
+		}
+		if(lowest_pos == i){
+			continue;
+		}
+		temp = A[i];
+		A[i] = A[lowest_pos];
+		A[lowest_pos] = temp;
+	}
 }
 
 /* */
