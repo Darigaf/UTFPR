@@ -2,21 +2,17 @@
 
 /* */
 void selection_sort (int *A, int n) {
-	int lowest_pos, temp;
-	for(int i = 0; i < n-1; i++){
-		lowest_pos = i;
-		for(int j = i; j < n-1; j++){
-			if(A[j] < lowest_pos){
-				lowest_pos = j; 
+	int i, j, aux;
+	for(j = 0; j < n; j++){
+		i = j;
+		while(i < n){
+			if(A[j] > A[i]){
+				aux = A[j];
+				A[j] = A[i];
+				A[i] = aux;	
 			}
-
+			i++;	
 		}
-		if(lowest_pos == i){
-			continue;
-		}
-		temp = A[i];
-		A[i] = A[lowest_pos];
-		A[lowest_pos] = temp;
 	}
 }
 

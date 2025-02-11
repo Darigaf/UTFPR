@@ -1,22 +1,22 @@
 #include "utils.h"
-void insertion_sort (int *A, int n) {
-	int lowest_pos, temp;
-	for(int i = 0; i < n; i++){
-		lowest_pos = i;
-		for(int j = i; j < n; j++){
-			if(A[j] < A[lowest_pos]){
-				lowest_pos = j; 
-			}
 
-		}
-		if(lowest_pos == i){
-			continue;
-		}
-		temp = A[i];
-		A[i] = A[lowest_pos];
-		A[lowest_pos] = temp;
+/* */
+void insertion_sort (int *A, int n) {
+	int *aux = (int *)malloc(n * sizeof(int));
+	int i, j;
+
+	aux[0] = A[0];
+
+	for(j = 1; j < n; j++){
+		i = j;
+		while(i
+			if(aux[i] < A[j])
+
+		aux[]
 	}
 }
+
+/* */
 int main (int argc, char *argv[]) {
 
   clock_t start, end;
@@ -50,5 +50,4 @@ int main (int argc, char *argv[]) {
   free (A);
   return 0;
 }
-
 

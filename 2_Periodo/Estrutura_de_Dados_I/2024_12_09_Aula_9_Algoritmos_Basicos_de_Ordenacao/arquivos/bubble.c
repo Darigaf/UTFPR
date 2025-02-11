@@ -2,14 +2,16 @@
 
 /* */
 void bubble_sort (int *A, int n) {
-	int temp;
-	for(int i = 0; i < n; i++){
-		for(int j = 0; j < (n-1)-i; j++){
-			if(A[j] > A[j+1]){
-				temp = A[j];
-				A[j] = A[j+1];
-				A[j+1] = temp;
+	int i, j, aux;
+	for(j = 1; j < n; j++){
+		i = 0;
+		while(i < n-j){
+			if(A[i] > A[i+1]){
+				aux = A[i+1];
+				A[i+1] = A[i];
+				A[i] = aux;
 			}
+			i++;
 		}
 	}
 }
