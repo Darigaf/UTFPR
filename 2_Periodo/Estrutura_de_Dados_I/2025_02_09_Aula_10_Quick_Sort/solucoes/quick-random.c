@@ -2,45 +2,37 @@
 
 /* */
 int partition (int A[], int left, int right) {
-  /*Terminar: veja os slides!*/ 
-	int i, j, pivot, aux;
-	pivot = A[right];
-	i = (left - 1);
-	for(j = left; j < right; j++){
-		if(A[j] <= pivot){
-			i++;		
-			aux = A[i];
-			A[i] = A[j];
-			A[j] = aux;
-		}
-	}
-
-	aux = A[right];
-	A[right] = A[i+1];
-	A[i+1] = aux;
-	return i+1;
+  int pivot = A[right];
+  int i = left - 1;
+  int j;
+  for (j = left; j < right; j++) {
+    if (A[j] <= pivot) {
+      i += 1;
+      swap (A, i, j);
+    }
+  }
+  swap (A, i+1, right);
+  return i+1;
 }
 
 /* */
 int random_partition (int A[], int left, int right) {
-	int random_pivot, aux;
-   	random_pivot = rand() % (right - left +1) +left; /*valores aleatórios*/
-	aux = A[right];
-	A[right] = A[random_pivot];
-	A[random_pivot] = aux;
- 	return partition (A, left, right);
+  int rand_pivot = rand() % (right - left + 1) + left;
+  if ((rand_pivot < left) || (rand_pivot > right)) {
+    printf("error: pivot out of interval!\n");
+    exit(1);
+  }
+  swap (A, rand_pivot, right);   
+  return partition (A, left, right);
 }
 
 /* */
 void quick_sort (int *A, int left, int right) {
-  /*Terminar*/ 
-	if(left < right){
-		//int pivot = random_partition (A, left, right);
-		int pivot = partition(A,left,right);
-		quick_sort(A,left, pivot-1);
-		quick_sort(A,pivot+1, right);
-	}
-
+  if (left < right) {
+    int pivot = random_partition (A, left, right);
+    quick_sort (A, left, pivot-1);
+    quick_sort (A, pivot+1, right); 
+  }
 }
 
 /* */
@@ -68,9 +60,9 @@ int main (int argc, char *argv[]) {
   }  
 
   start = clock();
-  print (A, n, "Input");
+  //print (A, n, "Input");
   quick_sort (A, 0, n-1);
-  print (A, n, "Sorted");
+  //print (A, n, "Sorted");
   end = clock();
   elapsed_time = (end - start)/(double)CLOCKS_PER_SEC;
   printf("Running time: %.2f\n", elapsed_time);
